@@ -230,12 +230,11 @@
   .game{
     position:relative;
     padding:2vh 0 12vh;
-    background-image:
-      linear-gradient(180deg, var(--void) 0%, rgba(8,8,13,0.4) 10%, rgba(8,8,13,0.5) 40%, rgba(8,8,13,0.6) 100%),
-      url('assets/spom.webp');
-    background-size:100% auto;
-    background-position:top center;
-    background-repeat:repeat-y;
+    background:
+      radial-gradient(ellipse 70% 45% at 25% 38%, rgba(192,132,252,0.24), transparent 65%),
+      radial-gradient(ellipse 60% 40% at 80% 46%, rgba(255,95,168,0.15), transparent 65%),
+      radial-gradient(ellipse 65% 50% at 50% 32%, rgba(91,47,184,0.28), transparent 65%),
+      var(--void);
   }
 
   .release-showcase{
