@@ -156,11 +156,11 @@
     width:100%;
     font-family:'Rajdhani', sans-serif;
     font-weight:500;
-    font-size:clamp(1.2rem, 3vw, 1.75rem);
-    letter-spacing:0.4em;
+    font-size:clamp(1.5rem, 3.8vw, 2.3rem);
+    letter-spacing:0.62em;
     color:#f5f4fa;
     opacity:0.85;
-    margin-top:0.1em;
+    margin-top:-0.35em;
     text-align:center;
   }
 
@@ -195,7 +195,7 @@
   .release-callout{
     text-align:center;
     position:relative; z-index:1;
-    margin:1rem 0;
+    margin:0.5rem 0 1.6rem;
   }
 
   .release-callout .label{
@@ -220,11 +220,6 @@
     text-shadow:0 0 50px rgba(255,145,66,0.25);
   }
 
-  .release-cta{
-    max-width:280px;
-    margin:1.6rem auto 0;
-  }
-
   /* ---------- GAME SECTION ---------- */
 
   .game{
@@ -238,17 +233,30 @@
     background-repeat:repeat-y;
   }
 
-  .trailer-slot-large{
-    max-width:960px;
-    margin:0 auto 2.4rem;
+  .release-showcase{
+    display:grid;
+    grid-template-columns:minmax(220px, 0.8fr) 1.3fr;
+    gap:2rem;
+    align-items:center;
+    margin-bottom:2.4rem;
   }
 
-  .about-logo{
-    display:block;
-    max-width:380px;
-    width:100%;
-    margin:0 auto 1.6rem;
+  .release-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1.3rem;
+  }
+
+  .release-left img{
+    width:100%; height:auto; display:block;
     filter:drop-shadow(0 0 30px rgba(192,132,252,0.4)) drop-shadow(0 0 55px rgba(255,95,168,0.2));
+  }
+
+  @media (max-width:760px){
+    .release-showcase{
+      grid-template-columns:1fr;
+    }
   }
 
   .trailer-slot{
@@ -419,10 +427,22 @@
   /* ---------- FOOTER ---------- */
 
   footer{
-    padding:5vh 0 6vh;
+    padding:6vh 0 6vh;
     text-align:center;
-    border-top:1px solid var(--border);
+    border-top:none;
     position:relative;
+  }
+  footer::before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:min(500px, 80%);
+    height:3px;
+    background:linear-gradient(90deg, transparent, var(--orange), var(--pink), var(--lightning-purple), transparent);
+    box-shadow:0 0 16px rgba(255,95,168,0.4), 0 0 32px rgba(192,132,252,0.25);
+    border-radius:2px;
   }
   footer p{
     font-family:'IBM Plex Mono', monospace;
@@ -479,17 +499,22 @@
 <div class="wrap">
   <div class="release-callout">
     <div class="date">COMING 10/2/2026</div>
-    <a class="btn btn-primary release-cta" href="https://store.steampowered.com/app/4803460/From_Beyond_Arcade_Edition/" target="_blank" rel="noopener">
-      Wishlist Now
-    </a>
   </div>
 </div>
 
 <section class="game">
   <div class="wrap">
 
-    <div class="trailer-slot trailer-slot-large">
-      <iframe src="https://www.youtube.com/embed/UD1UIRk5LwE" title="From Beyond: Arcade Edition Trailer" allowfullscreen></iframe>
+    <div class="release-showcase">
+      <div class="release-left">
+        <img src="assets/game_logo.webp" alt="From Beyond: Arcade Edition">
+        <a class="btn btn-primary" href="https://store.steampowered.com/app/4803460/From_Beyond_Arcade_Edition/" target="_blank" rel="noopener">
+          Wishlist Now
+        </a>
+      </div>
+      <div class="trailer-slot">
+        <iframe src="https://www.youtube.com/embed/UD1UIRk5LwE" title="From Beyond: Arcade Edition Trailer" allowfullscreen></iframe>
+      </div>
     </div>
 
     <div class="screenshot-gallery">
@@ -501,7 +526,6 @@
     </div>
 
     <div class="content-panel">
-      <img class="about-logo" src="assets/game_logo.webp" alt="From Beyond: Arcade Edition">
       <p class="game-sub">A BPM-synced arcade shoot-em-up. Every song is a level.</p>
 
       <h3 class="about-heading">ABOUT THIS <span class="accent">GAME</span></h3>
