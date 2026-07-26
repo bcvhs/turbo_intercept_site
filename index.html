@@ -195,7 +195,7 @@
   .release-callout{
     text-align:center;
     position:relative; z-index:1;
-    margin:0.5rem 0 1.6rem;
+    margin:0.5rem 0 0.8rem;
   }
 
   .release-callout .label{
@@ -224,7 +224,7 @@
 
   .game{
     position:relative;
-    padding:8vh 0 12vh;
+    padding:2vh 0 12vh;
     background-image:
       linear-gradient(180deg, var(--void) 0%, rgba(8,8,13,0.4) 10%, rgba(8,8,13,0.5) 40%, rgba(8,8,13,0.6) 100%),
       url('assets/spom.webp');
@@ -298,16 +298,23 @@
 
   .screenshot-gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-    gap:1.2rem;
+    grid-template-columns:repeat(5, 1fr);
+    gap:0.8rem;
     margin-bottom:3.2rem;
+  }
+
+  @media (max-width:820px){
+    .screenshot-gallery{ grid-template-columns:repeat(3, 1fr); }
+  }
+  @media (max-width:480px){
+    .screenshot-gallery{ grid-template-columns:repeat(2, 1fr); }
   }
 
   .screenshot-gallery img{
     width:100%; height:auto; display:block;
-    border-radius:8px;
+    border-radius:6px;
     border:1px solid rgba(192,132,252,0.25);
-    box-shadow:0 12px 34px rgba(0,0,0,0.5);
+    box-shadow:0 8px 22px rgba(0,0,0,0.5);
     transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     cursor:pointer;
   }
@@ -316,6 +323,42 @@
     transform:translateY(-4px);
     box-shadow:0 16px 44px rgba(255,95,168,0.25);
     border-color:rgba(255,95,168,0.5);
+  }
+
+  .lightbox{
+    display:none;
+    position:fixed; inset:0; z-index:100;
+    background:rgba(5,5,10,0.92);
+    align-items:center;
+    justify-content:center;
+    padding:5vh 5vw;
+  }
+  .lightbox.open{ display:flex; }
+
+  .lightbox img{
+    max-width:100%;
+    max-height:90vh;
+    border-radius:8px;
+    border:1px solid rgba(192,132,252,0.35);
+    box-shadow:0 0 60px rgba(192,132,252,0.25);
+  }
+
+  .lightbox-close{
+    position:absolute;
+    top:22px; right:28px;
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    font-size:2rem;
+    line-height:1;
+    color:var(--fg);
+    background:none; border:none;
+    cursor:pointer;
+    opacity:0.8;
+    transition:opacity 0.15s ease, color 0.15s ease;
+  }
+  .lightbox-close:hover{
+    opacity:1;
+    color:var(--pink);
   }
 
   .content-panel{
@@ -507,10 +550,10 @@
 
     <div class="release-showcase">
       <div class="release-left">
-        <img src="assets/game_logo.webp" alt="From Beyond: Arcade Edition">
         <a class="btn btn-primary" href="https://store.steampowered.com/app/4803460/From_Beyond_Arcade_Edition/" target="_blank" rel="noopener">
           Wishlist Now
         </a>
+        <img src="assets/game_logo.webp" alt="From Beyond: Arcade Edition">
       </div>
       <div class="trailer-slot">
         <iframe src="https://www.youtube.com/embed/UD1UIRk5LwE" title="From Beyond: Arcade Edition Trailer" allowfullscreen></iframe>
@@ -518,11 +561,11 @@
     </div>
 
     <div class="screenshot-gallery">
-      <img src="assets/screenshots/screenshot_1.webp" alt="From Beyond: Arcade Edition screenshot: coiled serpent boss">
-      <img src="assets/screenshots/screenshot_2.webp" alt="From Beyond: Arcade Edition screenshot: a neon buzz lyrics">
-      <img src="assets/screenshots/screenshot_3.webp" alt="From Beyond: Arcade Edition screenshot: my demon lover">
-      <img src="assets/screenshots/screenshot_4.webp" alt="From Beyond: Arcade Edition screenshot: bullet pattern burst">
-      <img src="assets/screenshots/screenshot_5.webp" alt="From Beyond: Arcade Edition screenshot: an omen returning">
+      <img src="assets/screenshots/screenshot_1.webp" alt="From Beyond: Arcade Edition screenshot: coiled serpent boss" onclick="openLightbox(this.src)">
+      <img src="assets/screenshots/screenshot_2.webp" alt="From Beyond: Arcade Edition screenshot: a neon buzz lyrics" onclick="openLightbox(this.src)">
+      <img src="assets/screenshots/screenshot_3.webp" alt="From Beyond: Arcade Edition screenshot: my demon lover" onclick="openLightbox(this.src)">
+      <img src="assets/screenshots/screenshot_4.webp" alt="From Beyond: Arcade Edition screenshot: bullet pattern burst" onclick="openLightbox(this.src)">
+      <img src="assets/screenshots/screenshot_5.webp" alt="From Beyond: Arcade Edition screenshot: an omen returning" onclick="openLightbox(this.src)">
     </div>
 
     <div class="content-panel">
@@ -565,6 +608,24 @@
     <p class="contact">For more info on BCVHS and From Beyond: <a href="https://linktr.ee/bcvhs" target="_blank" rel="noopener">linktr.ee/bcvhs</a></p>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="Screenshot preview">
+</div>
+
+<script>
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
 
 </body>
 </html>
