@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Turbo Intercept Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Rajdhani:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --void:#08080d;
+    --void-2:#0e0e17;
+    --interceptor-purple:#5b2fb8;
+    --engine-glow:#2fe8d6;
+    --engine-glow-soft:rgba(47,232,214,0.4);
+    --lightning-purple:#c084fc;
+    --lightning-purple-soft:rgba(192,132,252,0.5);
+    --pink:#ff5fa8;
+    --orange:#ff9142;
+    --fg:#f2f0f8;
+    --fg-dim:#a8a4c0;
+    --border:#2c2a44;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:
+      radial-gradient(ellipse 90% 50% at 30% 0%, rgba(91,47,184,0.28), transparent 60%),
+      var(--void);
+    color:var(--fg);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+  }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:2;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+
+  nav{
+    padding:3.5vh 0 2vh;
+  }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'Rajdhani', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--fg-dim);
+    transition:color 0.15s ease;
+  }
+  .back-link:hover{ color:var(--engine-glow); }
+
+  header.page-head{
+    text-align:center;
+    padding:5vh 0 6vh;
+    position:relative;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--fg-dim);
+    margin-bottom:0.8rem;
+  }
+
+  h1{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:800;
+    font-size:clamp(2rem, 6vw, 3.2rem);
+    letter-spacing:0.02em;
+    color:#f5f4fa;
+    text-shadow:0 0 20px rgba(47,232,214,0.3), 0 0 44px rgba(192,132,252,0.22);
+  }
+
+  .engine-line{
+    width:min(280px, 55%);
+    height:2px;
+    margin:1.6rem auto 0;
+    background:linear-gradient(90deg, transparent, var(--orange) 25%, var(--pink) 50%, var(--lightning-purple) 75%, transparent);
+    box-shadow:0 0 16px rgba(255,145,66,0.3), 0 0 32px rgba(192,132,252,0.2);
+    border-radius:2px;
+  }
+
+  main{
+    padding-bottom:10vh;
+  }
+
+  main p{
+    font-size:1.08rem;
+    line-height:1.8;
+    color:var(--fg);
+    margin-bottom:1.6rem;
+  }
+
+  main p strong{
+    color:#fff;
+    font-weight:600;
+  }
+
+  main p em{
+    color:var(--lightning-purple);
+    font-style:italic;
+  }
+
+  .credit-block{
+    display:flex;
+    gap:1.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:3rem 0;
+    padding:2rem;
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(192,132,252,0.15);
+    border-radius:12px;
+  }
+
+  .credit{
+    text-align:center;
+    flex:1;
+    min-width:180px;
+  }
+
+  .credit .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--fg-dim);
+    margin-bottom:0.4rem;
+  }
+
+  .credit .name{
+    font-family:'Rajdhani', sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--fg);
+  }
+
+  footer{
+    padding:6vh 0 6vh;
+    text-align:center;
+    position:relative;
+  }
+  footer::before{
+    content:'';
+    display:block;
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:min(500px, 80%);
+    height:3px;
+    background:linear-gradient(90deg, transparent, var(--orange), var(--pink), var(--lightning-purple), transparent);
+    box-shadow:0 0 16px rgba(255,95,168,0.4), 0 0 32px rgba(192,132,252,0.25);
+    border-radius:2px;
+  }
+  footer p{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--fg-dim);
+    letter-spacing:0.05em;
+    opacity:0.8;
+  }
+  footer .contact{ margin-top:1.4rem; }
+  footer .contact a{ color:var(--lightning-purple); transition:color 0.15s ease; }
+  footer .contact a:hover{ color:var(--pink); }
+
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav class="wrap">
+  <a class="back-link" href="index.html">&larr; Back Home</a>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="eyebrow">The Studio</div>
+    <h1>About Turbo Intercept</h1>
+    <div class="engine-line"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p>Turbo Intercept Interactive is a co-venture between Ben Trinklein, solo-dev extraordinaire, and Joshua Veach, an independent artist and creative. It started as an idea to creatively blend the worlds of video games and music into unique, special experiences. The studio name comes from the Interceptor, the sleek ghost car from the 1986 cult film <em>The Wraith</em>.</p>
+
+  <p>Our first release, <strong>From Beyond: Arcade Edition</strong>, started as a question. What if the soundtrack to the game <em>is</em> the game? A concept album that you can listen to and play!</p>
+
+  <p><em>From Beyond</em>'s story centers around an alien invasion on Halloween night, 1986. Narrated by a snarky heavy metal radio DJ named Nasty Nick Nash, every track is a level. Every lyric becomes something you shoot down as it scrolls up the screen. A fully immersive, rock and roll arcade shoot 'em up.</p>
+
+  <div class="credit-block">
+    <div class="credit">
+      <div class="role">Code &amp; Design</div>
+      <div class="name">Ben Trinklein</div>
+    </div>
+    <div class="credit">
+      <div class="role">Music &amp; Art</div>
+      <div class="name">Joshua Veach</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>TURBO INTERCEPT INTERACTIVE</p>
+    <p class="credit-line">Creating Worlds</p>
+    <p class="contact">CONTACT: <a href="mailto:turbointercept@hotmail.com">turbointercept@hotmail.com</a></p>
+    <p class="contact">For more info on BCVHS and From Beyond: <a href="https://linktr.ee/bcvhs" target="_blank" rel="noopener">linktr.ee/bcvhs</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
